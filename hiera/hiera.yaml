@@ -3,3 +3,5 @@
   - yaml
 :hierarchy:
   - "%{machine_env}/%{machine_role}"
+:yaml:
+    :datadir: '/etc/puppet/hiera/hieradata/'
