@@ -1,0 +1,7 @@
+- name: Puppet1
+  env: dev
+  role: web_svr
+  forwarded_port:
+    web:
+       host: 8080
+       guest: 80
