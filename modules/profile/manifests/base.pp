@@ -13,5 +13,15 @@ class profile::base {
         ensure  => running,
         require => Package['ntp']
     }
+	
+	 class { 'sensu':
+     rabbitmq_password  => 'correct-horse-battery-staple',
+     rabbitmq_host      => 'sensu-server.foo.com',
+     subscriptions      => 'sensu-test',
+     safe_mode          => true,
+   }
 
+  sensu::check { "diskspace":
+    command => '/etc/sensu/plugins/system/check-disk.rb',
+  }
 }
