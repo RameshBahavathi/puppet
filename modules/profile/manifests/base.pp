@@ -28,5 +28,9 @@ class profile::base {
   sensu::check { "diskspace":
     command => '/etc/sensu/plugins/check-disk.rb',
   }
+  
+  sensu::check { "cpuusage":
+    command => '/etc/sensu/plugins/check-cpu.rb',
+  }
 
 }
