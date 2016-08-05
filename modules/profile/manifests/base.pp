@@ -17,7 +17,7 @@ class profile::base {
 
     class { 'sensu':
      rabbitmq_password  => 'secret',
-     rabbitmq_host      => '10.162.52.161',
+     rabbitmq_host      => '10.162.52.184',
      subscriptions      => 'sensu-test',
      safe_mode          => true,
      plugins            => ['file:///etc/puppet/modules/sensu_community_plugins/plugins/system/check-disk.rb','file:///etc/puppet/modules/sensu_community_plugins/plugins/system/check-cpu.rb']
