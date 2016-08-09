@@ -22,9 +22,9 @@ class tomcat::config {
 
  file { 'DBConnection':
     ensure  => file,
-    path    => '/var/lib/tomcat7/webapps/sprint3/index.jsp',
+    path    => '/var/lib/tomcat7/webapps/sprint3/hello.jsp',
     require => Package['tomcat7'],
-    content => template( "tomcat/index.jsp.erb" ),
+    content => template( "tomcat/hello.jsp.erb" ),
     notify  => Service['tomcat7']
   }
 }
