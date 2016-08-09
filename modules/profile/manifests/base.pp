@@ -18,19 +18,23 @@ class profile::base {
     class { 'sensu':
      rabbitmq_password  => 'secret',
      rabbitmq_host      => '10.162.52.161',
-     subscriptions      => 'sprint3',
+     subscriptions      => 'all',
      safe_mode          => true,
-     plugins            => ['file:///etc/puppet/modules/sensu_community_plugins/plugins/system/check-disk.rb','file:///etc/puppet/modules/sensu_community_plugins/plugins/system/check-cpu.rb']
+     plugins            => ['file:///etc/puppet/modules/sensu_community_plugins/plugins/system/vmstat-metrics.rb','file:///etc/puppet/modules/sensu_community_plugins/plugins/system/disk-metrics.rb']
    }
 
 
 
-  sensu::check { "diskspace":
-    command => '/etc/sensu/plugins/check-disk.rb',
+  sensu::check { "disk-metrics":
+    command => '/etc/sensu/plugins/disk-metrics.rb  --scheme stats.sprint3.:::name:::',
+	handlers => ["graphite"],
+	type => 'metric'
   }
   
-  sensu::check { "cpuusage":
-    command => '/etc/sensu/plugins/check-cpu.rb',
+  sensu::check { "vmstat-metrics":
+    command => '/etc/sensu/plugins/vmstat-metrics.rb  --scheme stats.sprint3.:::name:::',
+	handlers => ["graphite"],
+	type => 'metric'
   }
 
 }
