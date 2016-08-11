@@ -5,15 +5,13 @@
 #
 class profile::base {
 
-    package { "ntp":
-        ensure => installed
+
+    class { 'ntp':
     }
 
-    service { "ntp":
-        ensure  => running,
-        require => Package['ntp']
-    }
-
+    class { 'ruby':
+      version         => '2.0.0'
+    } 
 
     class { 'sensu':
      rabbitmq_password  => 'secret',
