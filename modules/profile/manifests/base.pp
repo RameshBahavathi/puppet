@@ -28,35 +28,30 @@ class profile::base {
   sensu::check { "disk_metrics":
     command => '/etc/sensu/plugins/disk-metrics.rb  --scheme stats.sprint3.:::name:::',
 	handlers => ["graphite"],
-	subscriptions => 'sprint3-client',
 	type => 'metric'
   }
   
   sensu::check { "mem_metrics":
     command => '/etc/sensu/plugins/memory-metrics.rb  --scheme stats.sprint3.:::name:::',
 	handlers => ["graphite"],
-	subscriptions => 'sprint3-client',
 	type => 'metric'
   }
   
   sensu::check { "disk_usage_metrics":
     command => '/etc/sensu/plugins/disk-usage-metrics.rb  --scheme stats.sprint3.:::name:::',
 	handlers => ["graphite"],
-	subscriptions => 'sprint3-client',
 	type => 'metric'
   }
   
   sensu::check { "vmstat_metrics":
     command => '/etc/sensu/plugins/vmstat-metrics.rb  --scheme stats.sprint3.:::name:::',
 	handlers => ["graphite"],
-	subscriptions => 'sprint3-client',
 	type => 'metric'
   }
   
   sensu::check { "check_cpu":
     command => '/etc/sensu/plugins/check-cpu.rb  --scheme stats.sprint3.:::name:::',
 	handlers => ["graphite"],
-	subscriptions => 'sprint3-client',
 	type => 'metric'
   }
   
@@ -64,7 +59,6 @@ class profile::base {
   sensu::check { "check_disk":
     command => '/etc/sensu/plugins/check-disk.rb  --scheme stats.sprint3.:::name:::',
 	handlers => ["graphite"],
-	subscriptions => 'sprint3-client',
 	type => 'metric'
   }
 
