@@ -46,18 +46,5 @@ class profile::base {
 	handlers => ["graphite"],
 	type => 'metric'
   }
-  
-  sensu::check { "check_cpu":
-    command => '/etc/sensu/plugins/check-cpu.rb  --scheme stats.sprint3.:::name:::',
-	handlers => ["graphite"],
-	type => 'metric'
-  }
-  
-  
-  sensu::check { "check_disk":
-    command => '/etc/sensu/plugins/check-disk.rb  --scheme stats.sprint3.:::name:::',
-	handlers => ["graphite"],
-	type => 'metric'
-  }
 
 }
