@@ -383,7 +383,7 @@ class sensu (
   $subscriptions                  = [],
   $client_bind                    = '127.0.0.1',
   $client_port                    = '3030',
-  $client_address                 = $::ipaddress,
+  $client_address                 = $::ipaddress_eth1,
   $client_name                    = $::fqdn,
   $client_custom                  = {},
   $client_keepalive               = {},
