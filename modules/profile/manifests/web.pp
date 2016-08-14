@@ -5,6 +5,6 @@
 #
 class profile::web {
 
-   class { 'nginx': } 
+   class { 'cg_nginx': } 
 
 }
