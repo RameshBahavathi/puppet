@@ -6,6 +6,8 @@
 class role::app_svr {
 
  include profile::base
+ include profile::secure
+ include profile::sensu
  include profile::app
 
 }
