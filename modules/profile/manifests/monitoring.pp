@@ -4,17 +4,7 @@
 # Class to install the sensu client for any host
 #
 class profile::sensu {
-
-
-   # Get the structured data:
-    $data = hiera('messageMQ')
-    # Index into the structure:
-    $use_ip = $data[0]['ip']
-
-    notify { 'some-command':
-    message => $use_ip
-    }
-
+  
     class { 'sensu':
      rabbitmq_password  => 'secret',
      rabbitmq_host      => '10.162.52.161',
