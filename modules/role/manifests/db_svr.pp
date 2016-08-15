@@ -7,7 +7,7 @@ class role::db_svr {
 
  include profile::base
  include profile::secure
- include profile::sensu
+ include profile::monitoring
  include profile::db
 
 }
