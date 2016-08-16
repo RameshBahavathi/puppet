@@ -7,11 +7,11 @@ class profile::secure {
 
 
   exec{'credentials':
-          command => "/usr/bin/wget -q https://s3.ap-south-1.amazonaws.com/cg-cfs-immediate/pwd.yaml.gpg -O /etc/puppet/hiera/hieradata/$machine_env/pwd.yaml.gpg && /usr/bin/gpg --passphrase $passphrase /etc/puppet/hiera/hieradata/$machine_env/pwd.yaml.gpg && tail -n 4 /etc/puppet/hiera/hieradata/$machine_env/pwd.yaml >> /etc/puppet/hiera/hieradata/$machine_env/$machine_role.yaml",
-          creates => "/etc/puppet/hiera/hieradata/$machine_env/pwd.yaml.gpg",
+          command => "/usr/bin/wget -q https://s3.ap-south-1.amazonaws.com/cg-cfs-immediate/secure.yaml.gpg -O /etc/puppet/hiera/secure.yaml.gpg && /usr/bin/gpg --passphrase $passphrase /etc/puppet/hiera/secure.yaml.gpg && tail -n 4 /etc/puppet/hiera/secure.yaml >> /var/lib/puppet/facts.d/secure.yaml",
+          creates => "/etc/puppet/hiera/hieradata/$machine_env/secure.yaml.gpg",
   }
 
-  file{'/etc/puppet/hiera/pwd.yaml.gpg':
+  file{'/etc/puppet/hiera/secure.yaml.gpg':
      mode => 0755,
    require => Exec["credentials"],
   }
