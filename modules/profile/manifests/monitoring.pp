@@ -6,8 +6,8 @@
 class profile::monitoring {
   
     class { 'sensu':
-     rabbitmq_password  => $rabbitMqPassword,
-     rabbitmq_host      => $rabbitMqServerIp,
+     rabbitmq_password  => $rabbitmq_password,
+     rabbitmq_host      => $rabbitmq_serverip,
      subscriptions      => 'sprint3-client',
      safe_mode          => true,
      plugins            => ['file:///etc/puppet/modules/sensu_community_plugins/plugins/system/memory-metrics.rb','file:///etc/puppet/modules/sensu_community_plugins/plugins/system/vmstat-metrics.rb','file:///etc/puppet/modules/sensu_community_plugins/plugins/system/disk-metrics.rb','file:///etc/puppet/modules/sensu_community_plugins/plugins/system/disk-usage-metrics.rb']

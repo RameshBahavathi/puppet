@@ -5,7 +5,7 @@
 #
 class profile::db {
    class { '::mysql::server':
-   root_password    => $mySqlPassword,
+   root_password    => $mysql_password,
        override_options => { 'mysqld' => { 'max_connections' => '1024' } }
        }
 }
