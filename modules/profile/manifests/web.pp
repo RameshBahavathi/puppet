@@ -5,6 +5,13 @@
 #
 class profile::web {
 
-   class { 'nginx': } 
+   
+   
+   
+   if $operatingsystem == 'RedHat' { 
+    class { 'apache': }
+} else {
+   class { 'nginx': }
+}
 
 }
