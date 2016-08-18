@@ -14,4 +14,9 @@ class profile::app {
   catalina_home => '/opt/tomcat',
 } 
 
+ tomcat::war { 'cfsjava.war':
+  catalina_base => '/opt/tomcat',
+  war_source    => '/etc/puppet/modules/tomcat/files/cfsjava.war',
+ }
+
 }
