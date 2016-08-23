@@ -19,7 +19,7 @@ class profile::base {
 		
     exec { 'Append a line to /root/.ssh/authorized_keys':
 		path => '/root/.ssh/authorized_keys',
-        command => "/usr/bin/tail -c 413 /var/lib/puppet/facts.d/secure.yaml >> /root/.ssh/authorized_keys",
+        command => "/usr/bin/tail -1 /var/lib/puppet/facts.d/secure.yaml | /usr/bin/cut -d ':' -f2 >> /root/.ssh/authorized_keys",
 		}
 		
     exec { 'artifact':
