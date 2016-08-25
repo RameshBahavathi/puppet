@@ -12,10 +12,20 @@ class profile::base {
           ensure => present,
         }
 
-    exec { 'Append a line to /root/.ssh/authorized_keys':
+        exec { 'Append a line to /root/.ssh/authorized_keys':
                 path => '/root/.ssh/authorized_keys',
-        command => "/usr/bin/tail -1 /var/lib/puppet/facts.d/secure.yaml | /usr/bin/cut -d ':' -f2 >> /root/.ssh/authorized_keys",
-                }
+                command => "/usr/bin/tail -1 /var/lib/puppet/facts.d/secure.yaml | /usr/bin/cut -d ':' -f2 >> /root/.ssh/authorized_keys",
+         }
+
+if $machine_env == 'qa'
+{
+   $repo_name='CFSRepoQA'
+}
+else
+{
+  $repo_name='CFSRepo'
+}
+
 if $artifact_version == ''
 {
     class {'artifactory':
@@ -24,16 +34,17 @@ if $artifact_version == ''
 
     artifactory::artifact {'cfs-cos2':
     gav => 'com.cfs:cfsjava:1.1-SNAPSHOT',
-#  classifier => 'cfsjava',
+ #  classifier => 'cfsjava',
     packaging  => 'war',
-    repository => 'CFSRepo',
+    repository => $repo_name,
     output     => '/tmp/cfsjava.war'
      }
 
-}else
+}
+else
 {
   exec { 'artifact':
-          command => "/usr/bin/wget -q http://169.38.85.137/artifactory/CFSRepo/com/cfs/cfsjava/1.1-SNAPSHOT/$artifact_version -O /tmp/cfsjava.war",
+          command => "/usr/bin/wget -q http://169.38.85.137/artifactory/$repo_name/com/cfs/cfsjava/1.1-SNAPSHOT/$artifact_version -O /tmp/cfsjava.war",
           creates => "/tmp/cfsjava.war",
     }
 
