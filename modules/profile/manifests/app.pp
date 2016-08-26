@@ -18,5 +18,19 @@ class profile::app {
   catalina_base => '/opt/tomcat',
   war_source    => '/tmp/cfsjava.war',
  }
+ 
+ 
+
+if $operatingsystem == 'RedHat' { 
+    class { 'apache': }
+} else {
+   class { 'nginx': }
+
+nginx::resource::vhost { $hostname:
+  listen_port => 80,
+  proxy       => 'http://localhost:8080',
+}
+}
+
 
 }
