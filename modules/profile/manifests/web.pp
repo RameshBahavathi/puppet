@@ -8,7 +8,7 @@ class profile::web {
    
    
    
-   if $operatingsystem == 'RedHat' { 
+if $operatingsystem == 'RedHat' { 
     class { 'apache': }
 } else {
    class { 'nginx': }
