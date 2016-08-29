@@ -5,6 +5,12 @@
 #
 class profile::app {
 
+if $operatingsystem == 'RedHat' {
+    class { 'apache': }
+} else {
+   class { 'nginx': }
+}
+
 
   class { 'java': } ->
    tomcat::install { '/opt/tomcat':
@@ -21,12 +27,7 @@ class profile::app {
 
 
 
-if $operatingsystem == 'RedHat' {
-    class { 'apache': }
-} else {
-   class { 'nginx': }
-
-
+if $operatingsystem == 'Ubuntu' {
   nginx::resource::vhost { 'dev-java':
   listen_port => 80,
   proxy       => 'http://localhost:8080',
