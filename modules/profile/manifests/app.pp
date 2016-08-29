@@ -26,7 +26,7 @@ if $operatingsystem == 'RedHat' {
 } else {
    #class { 'nginx': }
 
-  nginx::resource::vhost { $hostname:
+  nginx::resource::vhost { 'default':
   listen_port => 80,
   proxy       => 'http://localhost:8080',
  }
