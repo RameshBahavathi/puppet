@@ -28,7 +28,7 @@ if $operatingsystem == 'RedHat' {
 
   exec { 'wait_for_my_web_service' :
   require => Service["nginx"],
-  command => "sleep 10",
+  command => "sleep 20",
   path => "/usr/bin:/bin",
 }
   nginx::resource::vhost { $hostname:
