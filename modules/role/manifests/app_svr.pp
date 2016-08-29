@@ -9,5 +9,6 @@ class role::app_svr {
  #include profile::secure
  include profile::monitoring
  include profile::app
+ include profile::proxy
 
 }

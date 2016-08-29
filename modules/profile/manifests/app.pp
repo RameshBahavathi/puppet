@@ -18,13 +18,4 @@ class profile::app {
   catalina_base => '/opt/tomcat',
   war_source    => '/tmp/cfsjava.war',
  }
-
-
-
-
-   class { 'nginx': }
-  nginx::resource::vhost { $hostname:
-  listen_port => 80,
-  proxy       => 'http://localhost:8080',
- }
 }
