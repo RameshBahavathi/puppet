@@ -12,19 +12,25 @@ class profile::app {
 }
   tomcat::instance { 'default':
   catalina_home => '/opt/tomcat',
-} 
+}
 
  tomcat::war { 'cfsjava.war':
   catalina_base => '/opt/tomcat',
   war_source    => '/tmp/cfsjava.war',
  }
- 
- 
 
-if $operatingsystem == 'RedHat' { 
+
+
+if $operatingsystem == 'RedHat' {
     class { 'apache': }
 } else {
    class { 'nginx': }
+
+  exec { 'wait_for_my_web_service' :
+  require => Service["nginx"],
+  command => "sleep 10",
+  path => "/usr/bin:/bin",
+}
   nginx::resource::vhost { $hostname:
   listen_port => 80,
   proxy       => 'http://localhost:8080',
