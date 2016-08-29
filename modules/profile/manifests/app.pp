@@ -26,12 +26,8 @@ if $operatingsystem == 'RedHat' {
 } else {
    class { 'nginx': }
 
-  exec { 'wait_for_my_web_service' :
-  require => Service["nginx"],
-  command => "sleep 20",
-  path => "/usr/bin:/bin",
-}
-  nginx::resource::vhost { $hostname:
+
+  nginx::resource::vhost { 'dev-java':
   listen_port => 80,
   proxy       => 'http://localhost:8080',
  }
