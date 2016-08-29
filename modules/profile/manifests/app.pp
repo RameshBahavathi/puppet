@@ -24,13 +24,11 @@ class profile::app {
 if $operatingsystem == 'RedHat' { 
     class { 'apache': }
 } else {
-   class { 'nginx': }
+   #class { 'nginx': }
 
-nginx::resource::vhost { $hostname:
+  nginx::resource::vhost { $hostname:
   listen_port => 80,
   proxy       => 'http://localhost:8080',
+ }
 }
-}
-
-
 }
