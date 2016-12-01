@@ -28,7 +28,7 @@ class profile::monitoring {
   }
   
   sensu::check { "disk_usage_metrics":
-    command => '/etc/sensu/plugins/disk-usage-metrics.rb  --scheme stats.ipass.:::name:::',
+    command => '/etc/sensu/plugins/disk-usage-metrics.rb  --scheme stats.ipaas.:::name:::',
 	handlers => ["graphite"],
 	type => 'metric'
   }
